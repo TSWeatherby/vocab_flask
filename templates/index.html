@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TexPlainify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<script>
+    function toggleDiv() {
+        var div1 = document.getElementById("content1");
+        div1.style.display = div1.style.display === "none" ? "block" : "none";
+        var div2 = document.getElementById("content2");
+        div2.style.display = div1.style.display === "none" ? "block" : "none";
+    }
+</script>
+<body>
+    <div class="container">
+        <p>Enter text to make list:</p>
+        <form action="/highlight" method="post">
+            <textarea name="text" rows="10" cols="50"></textarea><br>
+            Text Language:
+            <input type="radio" id="german_flag" name="lang" value="de">
+            <label for="german_flag">🇩🇪</label>
+            <input type="radio" id="british_flag" name="lang" value="en" checked>
+            <label for="british_flag">🇬🇧</label><br>
+            <label for="native_speaker">Native Speaker:</label>
+            <input type="checkbox" id="native_speaker" name="native_speaker" checked onclick="toggleDiv()"><br>
+            <div id="content1">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" value="0">
+            </div>
+            <div id="content2"  style="display: none;">
+            <label for="ger_levels">GER Level:</label>
+            <select id="ger_levels" name="ger_levels">
+                <option value="1000">A1 - Beginner</option>
+                <option value="1500">A2 - Elementary</option>
+                <option value="2750">B1 - Intermediate</option>
+                <option value="3250">B2 - Upper Intermediate</option>
+                <option value="3750">C1 - Advanced</option>
+                <option value="4500">C2 - Proficient</option>
+            </select>
+            </div><br>
+            <input type="submit" value="Make List">
+        </form>
+    </div>
+</body>
+</html>
